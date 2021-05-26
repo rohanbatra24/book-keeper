@@ -12,7 +12,7 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: #0d0c0f;
+  background-color: white;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='72' viewBox='0 0 36 72'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23a183d0' fill-opacity='0.4'%3E%3Cpath d='M2 6h12L8 18 2 6zm18 36h12l-6 12-6-12z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
@@ -89,8 +89,31 @@ a:active {
   margin-right: 5px;
 }
 
-/* Media Query: large smartphone (vertical) */
+/* Modal */
+.modal-container {
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 
+.show-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  max-width: 95%;
+  width: 500px;
+}
+
+/* Media Query: large smartphone (vertical) */
 @media screen and (max-width: 600px) {
   .container {
     flex-direction: column;
