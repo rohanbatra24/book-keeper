@@ -64,6 +64,9 @@ const storeBookmark = (e) => {
 
 // Build bookmarks elements
 const buildBookmarks = () => {
+  // remove all bookmark elements
+  bookmarkcontainer.textContent = "";
+
   bookmarks.forEach((item) => {
     const { name, url } = item;
     //item
