@@ -65,16 +65,30 @@ const storeBookmark = (e) => {
 // Build bookmarks elements
 const buildBookmarks = () => {
   bookmarks.forEach((item) => {
-    const { name, url } = bookmark;
+    const { name, url } = item;
     //item
-    const item = document.createElement("div");
-    item.classList.add("item");
+    const itemDiv = document.createElement("div");
+    itemDiv.classList.add("item");
     //close icon
     const closeIcon = document.createElement("i");
     closeIcon.classList.add("fas", "fa-times");
 
     // build all the other elements
   });
+};
+
+const deleteBookmarks = (url) => {
+  bookmarks.forEach((item, i) => {
+    if (item.url === url) {
+      bookmarks.splice(i, 1);
+    }
+  });
+
+  // update localstorage
+  localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+
+  // repopulate DOM
+  fetchBookmarks();
 };
 
 // fetch bookmarks from local storage
