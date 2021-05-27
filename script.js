@@ -6,7 +6,7 @@ const websiteNameEl = document.getElementById("website-name");
 const websiteUrlEl = document.getElementById("website-url");
 const bookmarkcontainer = document.getElementById("container");
 
-const bookmarks = [];
+let bookmarks = [];
 
 // SHow Modal, focus on input
 const showModal = (params) => {
@@ -57,9 +57,28 @@ const storeBookmark = (e) => {
   bookmarkcontainer.appendChild(document.createElement("a"));
 
   localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+  fetchBookmarks();
 
   bookmarkForm.reset();
 };
 
+// fetch bookmarks from local storage
+const fetchBookmarks = (params) => {
+  if (localStorage.getItem("bookmarks")) {
+    const bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
+
+    bookmarks.forEach((item) =>
+      bookmarkcontainer.appendChild(document.createElement("li"))
+    );
+  } else {
+    // create bookmarks array in localstorage
+    bookmarks = [{ name: "Test", url: "testing" }];
+    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+  }
+};
+
 // event listener
 bookmarkForm.addEventListener("submit", storeBookmark);
+
+// onload
+fetchBookmarks();
