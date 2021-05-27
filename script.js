@@ -4,7 +4,9 @@ const modalClose = document.getElementById("close-modal");
 const bookmarkForm = document.getElementById("bookmark-form");
 const websiteNameEl = document.getElementById("website-name");
 const websiteUrlEl = document.getElementById("website-url");
-const bookmarkcontainer = document.getElementById("bookmarks-container");
+const bookmarkcontainer = document.getElementById("container");
+
+const bookmarks = [];
 
 // SHow Modal, focus on input
 const showModal = (params) => {
@@ -47,6 +49,16 @@ const storeBookmark = (e) => {
   }
   console.log(urlValue, nameValue);
   validate(nameValue, urlValue);
+
+  const bookmark = { name: nameValue, url: urlValue };
+
+  bookmarks.push(bookmark);
+
+  bookmarkcontainer.appendChild(document.createElement("a"));
+
+  localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+
+  bookmarkForm.reset();
 };
 
 // event listener
