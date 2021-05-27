@@ -62,19 +62,32 @@ const storeBookmark = (e) => {
   bookmarkForm.reset();
 };
 
+// Build bookmarks elements
+const buildBookmarks = () => {
+  bookmarks.forEach((item) => {
+    const { name, url } = bookmark;
+    //item
+    const item = document.createElement("div");
+    item.classList.add("item");
+    //close icon
+    const closeIcon = document.createElement("i");
+    closeIcon.classList.add("fas", "fa-times");
+
+    // build all the other elements
+  });
+};
+
 // fetch bookmarks from local storage
 const fetchBookmarks = (params) => {
   if (localStorage.getItem("bookmarks")) {
-    const bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
-
-    bookmarks.forEach((item) =>
-      bookmarkcontainer.appendChild(document.createElement("li"))
-    );
+    bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
   } else {
     // create bookmarks array in localstorage
     bookmarks = [{ name: "Test", url: "testing" }];
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   }
+
+  buildBookmarks(bookmarks);
 };
 
 // event listener
