@@ -14,11 +14,40 @@ const showModal = (params) => {
 
 // / Modal event listeners
 modalShow.addEventListener("click", showModal);
-modalClose.addEventListener("click", () =>
-  modal.classList.remove("show-modal")
-);
+// modalClose.addEventListener("click", () =>
+//   modal.classList.remove("show-modal")
+// );
+
+//validate form
+const validate = (nameValue, urlValue) => {
+  const expression = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g;
+
+  const regex = new RegExp(expression);
+
+  if (urlValue.match(regex)) {
+    alert("matched");
+  } else {
+    ("Please provide a valid url");
+    return false;
+  }
+};
 
 window.addEventListener(
   "click",
   (e) => e.target === modal && modal.classList.remove("show-modal")
 );
+
+// handle data from form
+const storeBookmark = (e) => {
+  e.preventDefault();
+  const nameValue = websiteNameEl.value;
+  let urlValue = websiteUrlEl.value;
+  if (!urlValue.includes("http://", "https://")) {
+    urlValue = "https://" + urlValue;
+  }
+  console.log(urlValue, nameValue);
+  validate(nameValue, urlValue);
+};
+
+// event listener
+bookmarkForm.addEventListener("submit", storeBookmark);
